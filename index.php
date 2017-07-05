@@ -28,31 +28,34 @@
   <body>
     <div class="container-fluid content">
       <div class="row ">
-        <div class="col-10 offset-1 text-center search-box">
-          <input type="text" name="search-for" id="search-for" placeholder="What are you searching for?" size="40">
+        <div class="col-sm-10 col-xs-12 offset-sm-1 search-box input-group">
+          <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
+            <div class="random-page-icon">
+              <i class="fa fa-random" aria-hidden="true"></i>
+            </div>
+          </a>
+          <input type="text" name="search-for" id="search-for" placeholder="Let's Wiki!" >
           <div class="search-icon">
             <i class="fa fa-search" aria-hidden="true"></i>
           </div>
-          <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
-            <div class="random-page-icon">
-                <i class="fa fa-random" aria-hidden="true"></i>
-            </div>
-          </a>
         </div>
       </div>
     </div>
+
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-10 offset-1 search-results">
+        <div class="col-sm-10 col-xs-12 offset-sm-1 search-results">
         </div>
       </div>
     </div>
-
+  <footer class="copyright">Written and coded by <a href="https://www.dcmf.hu"><img class="dcmf-logo" src="dcmf-letters.png" alt="David's Code ManuFactory logo"/></a></footer>
   </body>
 <script>
   $(document).ready(function(){
     var getSearchResults = function(){
+      $('footer').addClass('animated slideOutDown').remove();
+
       var searchFor = $('#search-for').val();
       var searchForHTML = encodeURI(searchFor);
       $.ajax({
@@ -73,8 +76,12 @@
               setTimeout(function(){
                 $('.search-results').append(searchResultElement);
               }, index*300);
-
           });
+          setTimeout(function(){
+            $('footer').removeClass('animated slideOutDown').show();
+            $('.search-results').parent().parent().append('<footer class="copyright">Written and coded by <a href="https://www.dcmf.hu"><img class="dcmf-logo" src="dcmf-letters.png" alt="David\'s Code ManuFactory logo"/></a></footer>')
+
+          }, 3000);
         },
 
         error: function(message){
@@ -87,7 +94,7 @@
       if ($('.content').height() !== '15%'){
         $('.content').animate({
           height: '15%'
-        }, 300);
+        }, 500);
       }
 
       $('.search-results').addClass('animated fadeOut');
@@ -100,7 +107,18 @@
 
     $(document).keypress(function(e){
       if (e.which == 13){
-        getSearchResults();
+        if ($('.content').height() !== '15%'){
+          $('.content').animate({
+            height: '15%'
+          }, 500);
+        }
+
+        $('.search-results').addClass('animated fadeOut');
+
+        setTimeout(function(){
+          $('.search-results').empty().removeClass('animated fadeOut');
+          getSearchResults();
+        }, 400);
       }
     });
   });

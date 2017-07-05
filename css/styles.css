@@ -31,40 +31,82 @@ body{
   background-size:cover;
   background-position: center;
   display: inline-block;
-  padding: 10px 17px;
-  border: 1px solid #85C1E9;
-  border-radius: 44px;
+  padding: 10px 18px;
+  border: 2px solid #85C1E9;
   position: relative;
-  left: -64px;
-  bottom: -1px;
   cursor: pointer;
 }
 .search-icon{
   background-image: url(https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png);
+  background-color: white;
+  border-top-right-radius: 44px;
+  border-bottom-right-radius: 44px;
+  border-left: none;
 }
 .random-page-icon{
-  background-color: #333;
+  border-top-left-radius: 44px;
+  border-bottom-left-radius: 44px;
+  background-color: white;
+  border-right: none;
+  margin-left: 0;
 }
 
-a, a:hover, a:visited {text-decoration: none}
+a, a:hover, a:visited {text-decoration: none;}
 
 a .random-page-icon, a:hover .random-page-icon, a:visited .random-page-icon{
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 input[type="text"]{
-  width: 70%;
+  margin-left: 0 auto;
+  maxwidth: 70%;
   font-size: 24px;
   font-family: 'Raleway', sans-serif;
   font-weight: 300;
   text-align: center;
-  padding: 10px 25px 10px 8px;
-  border: 2px solid #85C1E9;
-  border-radius: 64px;
+  padding: 10px 24px 10px 0;
+  border-top: 2px solid #85C1E9;
+  border-bottom: 2px solid #85C1E9;
+  border-left: none;
+  border-right: none;
 }
 
+input:focus{
+  outline:none;
+}
+
+@media (max-width: 320px){
+  input[type="text"]{
+    font-size: 11px;
+    width: 55%;
+    padding-right: 5px;
+  }
+  .search-icon, .random-page-icon{
+    padding: 10px, 0px;
+  }
+}
+
+@media (max-width: 480px){
+  input[type="text"]{
+    font-size: 20px;
+    width: 55%;
+  }
+}
+
+@media (min-width:481px){
+  input[type="text"]{
+    font-size: 24px;
+    width: 100%;
+  }
+
+}
+
+
 /*SEARCH RESULT BOX CSS*/
+.search-results{
+  margin-bottom: 50px;
+}
 .search-result{
   background-color: #85C1E9;
   margin: 20px auto;
@@ -87,3 +129,23 @@ a .search-result p {color: #333;}
 a .search-result:hover {background-color: black;}
 a .search-result:hover h4 {background-color: black; color: #85C1E9 }
 a .search-result:hover p {background-color: #333; color: #85C1E9}
+
+footer{
+  position: relative;
+  bottom: 0;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+.copyright {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  background-color: #000;
+  color: white;
+}
+.dcmf-logo{height: 20px;margin-bottom: 7px}
